@@ -1,19 +1,70 @@
-AI Smart Tutor – A modern educational platform that leverages AI to enhance learning experiences for students and teachers.
+# E-Learning Platform
 
-Features:
+## 📖 Project Overview
 
-Student dashboard: Access quizzes, flashcards, and study materials.
+This E-Learning Platform is a **web application** designed for students, teachers, and admins. It allows:
 
-Teacher dashboard: Upload notes, create quizzes, and manage classes.
+- Students to register, login, browse courses, purchase courses, and access content.  
+- Teachers to upload courses, manage them, and track enrolled students.  
+- Admins to manage users, approve courses, track payments, and generate reports.
 
-AI-powered study tools: Automatically generate quizzes and flashcards from uploaded notes using OpenAI.
+The platform includes a **payment tracking system** for course purchases.
 
-Authentication: Role-based login for students and teachers.
+---
 
-Frontend: React.js with dynamic components.
+## 🛠️ Tech Stack
 
-Backend: Node.js + Express server with MongoDB database.
+**Frontend:**  
+- React.js (UI Components)  
+- React Router (Navigation)  
+- CSS / Tailwind / Bootstrap (Styling)
 
-RESTful API: All functionalities exposed via secure API endpoints.
+**Backend:**  
+- Node.js + Express.js (API)  
+- JWT Authentication (Secure login)
 
-Tech Stack: React, Node.js, Express, MongoDB, Axios, OpenAI API, Stripe (optional payments), JWT for authentication.
+**Database:**  
+- MongoDB (Users, Courses, Payments)
+
+**Optional Tools / APIs:**  
+- Stripe / Razorpay (Online payment)  
+- AWS S3 / Cloudinary (Course file storage)
+
+---
+
+## 🧩 Features & Modules
+
+### 1. Student Module
+- Register & login  
+- Browse available courses  
+- Purchase courses (manual or online)  
+- Access purchased courses  
+- Track learning progress
+
+### 2. Teacher Module
+- Register & login  
+- Upload courses (videos, PDFs, quizzes)  
+- Manage own courses  
+- Track enrolled students  
+- View course payment summary
+
+### 3. Admin Module
+- Admin login  
+- Approve/reject teacher-uploaded courses  
+- Manage all users  
+- Track payments and purchases  
+- Generate reports (e.g., popular courses)
+
+---
+
+## 🗂 Database Schema (Example)
+
+### Users
+```json
+{
+  "_id": "unique_id",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "hashed_password",
+  "role": "student | teacher | admin"
+}
