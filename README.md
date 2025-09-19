@@ -19,102 +19,65 @@ The platform includes a **payment tracking system** for course purchases.
 - React Router (Navigation)  
 - CSS / Tailwind / Bootstrap (Styling)
 
-**Backend:**  
-- Node.js + Express.js (API)  
-- JWT Authentication (Secure login)
-
-**Database:**  
-- MongoDB (Users, Courses, Payments)
+**Backend / Database:**  
+- **Firebase Authentication** – for secure login and role management  
+- **Firebase Firestore** – store users, courses, and payments  
 
 **Optional Tools / APIs:**  
 - Stripe / Razorpay (Online payment)  
-- AWS S3 / Cloudinary (Course file storage)
+- Firebase Storage – for course videos/documents  
 
 ---
 
 ## 🧩 Features & Modules
 
 ### 1. Student Module
-- Register & login  
+- Register & login via Firebase Authentication  
 - Browse available courses  
 - Purchase courses (manual or online)  
 - Access purchased courses  
 - Track learning progress
 
 ### 2. Teacher Module
-- Register & login  
-- Upload courses (videos, PDFs, quizzes)  
+- Register & login via Firebase Authentication  
+- Upload courses (videos, PDFs, quizzes) to Firebase Storage  
 - Manage own courses  
 - Track enrolled students  
 - View course payment summary
 
 ### 3. Admin Module
-- Admin login  
+- Admin login via Firebase Authentication  
 - Approve/reject teacher-uploaded courses  
-- Manage all users  
+- Manage all users (students & teachers)  
 - Track payments and purchases  
-- Generate reports (e.g., popular courses)
+- Generate reports (e.g., most popular courses)
 
 ---
 
-## 🗂 Database Schema (Example)
+## 🗂 Firebase Database Structure (Example)
 
-### Users
+### Users (Firestore Collection: `users`)
 ```json
 {
-  "_id": "unique_id",
+  "uid": "firebase_user_id",
   "name": "John Doe",
   "email": "john@example.com",
-  "password": "hashed_password",
   "role": "student | teacher | admin"
 }
-backend/
-
-│
-├── controllers/          # Business logic for routes
-│   ├── authController.js       # Login/Register logic
-│   ├── courseController.js     # Create, update, list courses
-│   ├── paymentController.js    # Track course payments
-│   └── userController.js       # Manage students, teachers, admin
-│
-├── models/               # Database schemas
-│   ├── User.js           # Student, Teacher, Admin schema
-│   ├── Course.js         # Course schema
-│   └── Payment.js        # Payment schema
-│
-├── routes/               # API endpoints
-│   ├── authRoutes.js     # /api/auth
-│   ├── courseRoutes.js   # /api/courses
-│   ├── paymentRoutes.js  # /api/payments
-│   └── userRoutes.js     # /api/users
-│
-├── middlewares/          # Auth & validation middlewares
-│   ├── authMiddleware.js     # JWT verification
-│   └── roleMiddleware.js     # Role-based access
-│
-├── utils/                # Utility functions
-│   └── email.js          # Optional email notifications
-│
-├── config/               # Config files
-│   └── db.js             # MongoDB connection
-│
-├── server.js             # Express server setup
-└── package.json
-
 
 frontend/
 │
 ├── public/
-│   └── index.html        # Main HTML file
+│   └── index.html             # Main HTML file
 │
 ├── src/
-│   ├── components/       # Reusable UI components
+│   ├── components/            # Reusable UI components
 │   │   ├── Navbar.js
 │   │   ├── Footer.js
 │   │   ├── CourseCard.js
 │   │   └── PaymentForm.js
 │   │
-│   ├── pages/            # Main pages
+│   ├── pages/                 # Role-based pages
 │   │   ├── Home.js
 │   │   ├── Login.js
 │   │   ├── Register.js
@@ -124,17 +87,20 @@ frontend/
 │   │   ├── CourseDetail.js
 │   │   └── PurchaseSuccess.js
 │   │
-│   ├── services/         # API calls
+│   ├── services/              # API calls to Firebase
 │   │   ├── authService.js
 │   │   ├── courseService.js
 │   │   └── paymentService.js
 │   │
-│   ├── context/          # React Context for auth & state
+│   ├── context/               # React Context for auth & global state
 │   │   └── AuthContext.js
+│   │
+│   ├── firebase/              # Firebase config & helpers
+│   │   └── config.js
 │   │
 │   ├── App.js
 │   ├── index.js
-│   └── styles/           # CSS / Tailwind / Bootstrap
+│   └── styles/                # CSS / Tailwind / Bootstrap
 │       └── main.css
 │
 └── package.json
