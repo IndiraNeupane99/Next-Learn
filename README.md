@@ -68,3 +68,73 @@ The platform includes a **payment tracking system** for course purchases.
   "password": "hashed_password",
   "role": "student | teacher | admin"
 }
+backend/
+
+│
+├── controllers/          # Business logic for routes
+│   ├── authController.js       # Login/Register logic
+│   ├── courseController.js     # Create, update, list courses
+│   ├── paymentController.js    # Track course payments
+│   └── userController.js       # Manage students, teachers, admin
+│
+├── models/               # Database schemas
+│   ├── User.js           # Student, Teacher, Admin schema
+│   ├── Course.js         # Course schema
+│   └── Payment.js        # Payment schema
+│
+├── routes/               # API endpoints
+│   ├── authRoutes.js     # /api/auth
+│   ├── courseRoutes.js   # /api/courses
+│   ├── paymentRoutes.js  # /api/payments
+│   └── userRoutes.js     # /api/users
+│
+├── middlewares/          # Auth & validation middlewares
+│   ├── authMiddleware.js     # JWT verification
+│   └── roleMiddleware.js     # Role-based access
+│
+├── utils/                # Utility functions
+│   └── email.js          # Optional email notifications
+│
+├── config/               # Config files
+│   └── db.js             # MongoDB connection
+│
+├── server.js             # Express server setup
+└── package.json
+
+
+frontend/
+│
+├── public/
+│   └── index.html        # Main HTML file
+│
+├── src/
+│   ├── components/       # Reusable UI components
+│   │   ├── Navbar.js
+│   │   ├── Footer.js
+│   │   ├── CourseCard.js
+│   │   └── PaymentForm.js
+│   │
+│   ├── pages/            # Main pages
+│   │   ├── Home.js
+│   │   ├── Login.js
+│   │   ├── Register.js
+│   │   ├── StudentDashboard.js
+│   │   ├── TeacherDashboard.js
+│   │   ├── AdminDashboard.js
+│   │   ├── CourseDetail.js
+│   │   └── PurchaseSuccess.js
+│   │
+│   ├── services/         # API calls
+│   │   ├── authService.js
+│   │   ├── courseService.js
+│   │   └── paymentService.js
+│   │
+│   ├── context/          # React Context for auth & state
+│   │   └── AuthContext.js
+│   │
+│   ├── App.js
+│   ├── index.js
+│   └── styles/           # CSS / Tailwind / Bootstrap
+│       └── main.css
+│
+└── package.json
